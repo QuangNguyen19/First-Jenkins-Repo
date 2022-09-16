@@ -1,16 +1,9 @@
 pipeline {
-    agent {
-        label 'docker' 
-    }
-
+    agent { docker { image 'maven:3.8.4-openjdk-11-slim' } }
     stages {
         stage('build') {
-            agent {
-                label 'docker' 
-                docker { image 'node:16.13.1-alpine' } 
-        }
             steps {
-                sh 'node --version'
+                sh 'mvn --version'
             }
         }
     }
